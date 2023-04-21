@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feistel Cipher</title>
+    <style>
+      /* Add your CSS styling here */
+      body {
+        font-family: Arial, sans-serif;
+      }
+    
+      h1 {
+        text-align: center;
+      }
+    
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+      }
+    
+      label {
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+    
+      input[type="text"],
+      input[type="number"] {
+        width: 50%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+    
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+    
+      #output {
+        text-align: center;
+        margin-top: 20px;
+        font-weight: bold;
+      }
+    
+      #process {
+        text-align: left;
+        margin-top: 30px;
+        font-weight: bold;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+      }
+    
+      #process span {
+        margin-bottom: 10px;
+      }
+    </style>
+    
+</head>
+<body>
+    <h1>Feistel Cipher</h1>
+    <form method="POST">
+      <label for="text">Enter Text:</label>
+      <input type="text" id="text" name="text" autocomplete="off" required>
+   
+
+        <label for="key">Enter Key:</label>
+        <input type="text" id="key" name="key" autocomplete="off" required>
+
+        
+
+        <label for="rounds">Enter Number of Rounds:</label>
+        <input type="number" id="rounds" name="rounds" min="1" max="16" autocomplete="off" required>
+        {% if error %}
+        <p style="color: red">{{ error }}</p>
+        {% endif %}
+        <input type="submit" value="Encrypt">
+    </form>
+    <div id="output">
+        {% if hashed %}
+            {{ hashed }}
+        {% endif %}
+        {% if keys %}
+        {{ keys }}
+    {% endif %}
+    </div>
+    <div id="process">
+      {% if steps %} 
+          {% for i in range(length*8) %}
+            {{ steps[i] }}
+          </br>
+          {% endfor %}
+        
+      {% endif %}
+    </div>
+</body>
+</html>
